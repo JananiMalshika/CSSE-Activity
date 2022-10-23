@@ -1,17 +1,17 @@
-
+package com.sunday.refactoring.main;
 
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 
-public class d {
+public class Main {
 
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void Main(String[] args) {
 
-		a a1 = new a();
+		DBConnectionUtil a1 = new DBConnectionUtil();
 		try {
 			c3.rEQUESTtRANSFORM();
 			a1.a2();

@@ -1,6 +1,6 @@
+package com.sunday.refactoring.model;
 
-
-public class b {
+public class Employee {
 
 	public String iDeMPLOYEE;
 	public String nAMEfULL;
