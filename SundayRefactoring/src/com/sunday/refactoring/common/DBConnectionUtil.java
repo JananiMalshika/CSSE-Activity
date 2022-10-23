@@ -42,9 +42,9 @@ public class DBConnectionUtil extends ReadProperty {
 	public void a2() {
 
 		try {
-			int s = c3.XMLXPATHS().size();
+			int s = XSLTransformUtil.XMLXPATHS().size();
 			for (int i = 0; i < s; i++) {
-				Map<String, String> l = c3.XMLXPATHS().get(i);
+				Map<String, String> l = XSLTransformUtil.XMLXPATHS().get(i);
 				b EMPLOYEE = new b();
 				EMPLOYEE.eMPLOYEEiD(l.get("XpathEmployeeIDKey"));
 				EMPLOYEE.fULLnAME(l.get("XpathEmployeeNameKey"));
