@@ -1,3 +1,4 @@
+package com.sunday.refactoring.common;
 
 
 import java.util.logging.Level;
@@ -6,13 +7,13 @@ import java.io.IOException;
 import java.util.Properties;
 
 
-public class c1 {
+public class ReadProperty {
 
 	public static final Properties p = new Properties();
 
 	static {
 		try {
-			p.load(c2.class.getResourceAsStream("../config/config.properties"));
+			p.load(RequestUtil.class.getResourceAsStream("../config/config.properties"));
 		} catch (Exception e) {
 			
 		}

@@ -1,6 +1,10 @@
+package com.sunday.refactoring.common;
 
 
 import org.xml.sax.SAXException;
+
+import com.sunday.refactoring.model.Employee;
+
 import java.sql.Connection;
 import java.util.logging.Logger;
 import java.sql.DriverManager;
@@ -16,9 +20,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class a extends c1 {
+public class DBConnectionUtil extends ReadProperty {
 
-	private final ArrayList<b> el = new ArrayList<b>();
+	private final ArrayList<Employee> el = new ArrayList<Employee>();
 
 	private static Connection c;
 
@@ -26,7 +30,7 @@ public class a extends c1 {
 
 	private PreparedStatement ps;
 
-	public a() {
+	public DBConnectionUtil() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			c = DriverManager.getConnection(p.getProperty("url"), p.getProperty("username"),
@@ -38,9 +42,9 @@ public class a extends c1 {
 	public void a2() {
 
 		try {
-			int s = c3.XMLXPATHS().size();
+			int s = XSLTransformUtil.XMLXPATHS().size();
 			for (int i = 0; i < s; i++) {
-				Map<String, String> l = c3.XMLXPATHS().get(i);
+				Map<String, String> l = XSLTransformUtil.XMLXPATHS().get(i);
 				b EMPLOYEE = new b();
 				EMPLOYEE.eMPLOYEEiD(l.get("XpathEmployeeIDKey"));
 				EMPLOYEE.fULLnAME(l.get("XpathEmployeeNameKey"));
@@ -58,15 +62,15 @@ public class a extends c1 {
 	public void a3() {
 		try {
 			s = c.createStatement();
-			s.executeUpdate(c2.Q("q2"));
-			s.executeUpdate(c2.Q("q1"));
+			s.executeUpdate(RequestUtil.Q("q2"));
+			s.executeUpdate(RequestUtil.Q("q1"));
 		} catch (Exception e) {
 		}
 	}
 
 	public void a4() {
 		try {
-			ps = c.prepareStatement(c2.Q("q3"));
+			ps = c.prepareStatement(RequestUtil.Q("q3"));
 			c.setAutoCommit(false);
 			for(int i = 0; i < el.size(); i++){
 				b e = el.get(i);
@@ -88,7 +92,7 @@ public class a extends c1 {
 
 		b e = new b();
 		try {
-			ps = c.prepareStatement(c2.Q("q4"));
+			ps = c.prepareStatement(RequestUtil.Q("q4"));
 			ps.setString(1, eid);
 			ResultSet R = ps.executeQuery();
 			while (R.next()) {
@@ -109,7 +113,7 @@ public class a extends c1 {
 	public void EMPLOYEEDELETE(String eid) {
 
 		try {
-			ps = c.prepareStatement(c2.Q("q6"));
+			ps = c.prepareStatement(RequestUtil.Q("q6"));
 			ps.setString(1, eid);
 			ps.executeUpdate();
 		} catch (Exception e) {
@@ -121,7 +125,7 @@ public class a extends c1 {
 
 		ArrayList<b> l = new ArrayList<b>();
 		try {
-			ps = c.prepareStatement(c2.Q("q5"));
+			ps = c.prepareStatement(RequestUtil.Q("q5"));
 			ResultSet r = ps.executeQuery();
 			while (r.next()) {
 				b e = new b();

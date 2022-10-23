@@ -1,9 +1,11 @@
+package com.sunday.refactoring.common;
 
 
 import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.TransformerException;
 import java.io.File;
 import org.xml.sax.SAXException;
+
 import java.io.IOException;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.NodeList;
@@ -11,7 +13,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Element;
 import javax.xml.transform.TransformerConfigurationException;
 
-public class c2 extends c1 {
+public class RequestUtil extends ReadProperty {
 	
 	public static String Q(String id) throws Exception {
 		NodeList n; Element e = null;
