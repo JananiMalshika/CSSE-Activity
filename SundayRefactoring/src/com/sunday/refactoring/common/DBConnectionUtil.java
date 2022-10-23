@@ -3,7 +3,7 @@ package com.sunday.refactoring.common;
 
 import org.xml.sax.SAXException;
 
-import ReadProperty;
+import com.sunday.refactoring.model.Employee;
 
 import java.sql.Connection;
 import java.util.logging.Logger;
@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class DBConnectionUtil extends ReadProperty {
 
-	private final ArrayList<b> el = new ArrayList<b>();
+	private final ArrayList<Employee> el = new ArrayList<Employee>();
 
 	private static Connection c;
 

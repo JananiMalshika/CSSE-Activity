@@ -1,54 +1,41 @@
 package com.sunday.refactoring.model;
 
-public class Employee {
-
-	public String iDeMPLOYEE;
-	public String nAMEfULL;
-	public String aDDRESS;
-	public String fACULTYnAME;
-	public String dEPARTMENT;
-	public String dESIGNATION;
-	public String EMPLOYEEiDgET() {
-		return iDeMPLOYEE;
+public abstract class Employee {
+	public String employeeID;
+	public String fullName;
+	public String address;
+	public String facultyName;
+	public String department;
+	public String designation;
+	
+	abstract String getEmployeeID();
+	abstract void setEmployeeID(String employeeID);
+	abstract String getFullName();
+	abstract void setFullName(String fullName);
+	abstract String getAddress();
+	abstract void setAddress(String address);
+	abstract String getFacultyName();
+	abstract void setFacultyName(String facultyName);
+	abstract String getDepartment();
+	abstract void setDepartment(String department);
+	abstract String getDesignation();
+	abstract void setDesignation(String designation);
+	
+	//template method
+	public final void initializeEmployee() {
+		setEmployeeID(employeeID);
+		setFullName(fullName);
+		setAddress(address);
+		setFacultyName(facultyName);
+		setDepartment(department);
+		setDesignation(designation);
 	}
-	public void eMPLOYEEiD(String employeeID) {
-		iDeMPLOYEE = employeeID;
-	}
-	public String fULLnAMEgET() {
-		return nAMEfULL;
-	}
-	public void fULLnAME(String fullName) {
-		nAMEfULL = fullName;
-	}
-	public String aDDRESSgET() {
-		return aDDRESS;
-	}
-	public void aDDRESS(String address) {
-		aDDRESS = address;
-	}
-	public String fACULTYnAMEgET() {
-		return fACULTYnAME;
-	}
-	public void fACULTYNAME(String facultyName) {
-		fACULTYnAME = facultyName;
-	}
-	public String dEPARTMENTgET() {
-		return dEPARTMENT;
-	}
-	public void dEPARTMENT(String department) {
-		dEPARTMENT = department;
-	}
-	public String dESIGNATIONgET() {
-		return dESIGNATION;
-	}
-	public void dESIGNATION(String designation) {
-		dESIGNATION = designation;
-	}
+	
 	@Override
 	public String toString() {
 		
-		return "Employee ID = " + iDeMPLOYEE + "\n" + "FullName = " + nAMEfULL + "\n" + "Address = " + aDDRESS + "\n"
-				+ "Faculty Name = " + fACULTYnAME + "\n" + "Department = " + dEPARTMENT + "\n" + "Designation = "
-				+ dESIGNATION;
+		return "Employee ID = " + employeeID + "\n" + "FullName = " + fullName + "\n" + "Address = " + address + "\n"
+				+ "Faculty Name = " + facultyName + "\n" + "Department = " + department + "\n" + "Designation = "
+				+ designation;
 	}
 }

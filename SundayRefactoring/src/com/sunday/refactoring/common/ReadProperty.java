@@ -1,10 +1,8 @@
+package com.sunday.refactoring.common;
 
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import com.sunday.refactoring.common.RequestUtil;
-
 import java.io.IOException;
 import java.util.Properties;
 

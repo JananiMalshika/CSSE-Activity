@@ -13,8 +13,6 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.xml.sax.SAXException;
 
-import ReadProperty;
-
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;

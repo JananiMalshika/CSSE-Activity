@@ -6,8 +6,6 @@ import javax.xml.transform.TransformerException;
 import java.io.File;
 import org.xml.sax.SAXException;
 
-import ReadProperty;
-
 import java.io.IOException;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.NodeList;
