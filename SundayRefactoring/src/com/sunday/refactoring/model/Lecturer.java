@@ -51,26 +51,28 @@ public class Lecturer extends Employee{
 
 	@Override
 	String getDepartment() {
-		// TODO Auto-generated method stub
-		return null;
+		return department;
 	}
 
 	@Override
 	void setDepartment(String department) {
-		// TODO Auto-generated method stub
-		
+		this.department = department;
 	}
 
 	@Override
 	String getDesignation() {
-		// TODO Auto-generated method stub
-		return null;
+		return designation;
 	}
 
 	@Override
 	void setDesignation(String designation) {
-		// TODO Auto-generated method stub
-		
+		this.designation = "Lecturer";
 	}
 
+	@Override
+	public String toString() {
+		return "Employee ID = " + employeeID + "\n" + "FullName = " + fullName + "\n" + "Address = " + address + "\n"
+				+ "Faculty Name = " + facultyName + "\n" + "Department = " + department + "\n" + "Designation = "
+				+ designation;
+	}
 }

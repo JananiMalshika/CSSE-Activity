@@ -8,18 +8,19 @@ public abstract class Employee {
 	public String department;
 	public String designation;
 	
-	abstract String getEmployeeID();
-	abstract void setEmployeeID(String employeeID);
-	abstract String getFullName();
-	abstract void setFullName(String fullName);
-	abstract String getAddress();
-	abstract void setAddress(String address);
-	abstract String getFacultyName();
-	abstract void setFacultyName(String facultyName);
-	abstract String getDepartment();
-	abstract void setDepartment(String department);
-	abstract String getDesignation();
-	abstract void setDesignation(String designation);
+	public abstract String getEmployeeID();
+	public abstract void setEmployeeID(String employeeID);
+	public abstract String getFullName();
+	public abstract void setFullName(String fullName);
+	public abstract String getAddress();
+	public abstract void setAddress(String address);
+	public abstract String getFacultyName();
+	public abstract void setFacultyName(String facultyName);
+	public abstract String getDepartment();
+	public abstract void setDepartment(String department);
+	public abstract String getDesignation();
+	public abstract void setDesignation(String designation);
+	public abstract String toString();
 	
 	//template method
 	public final void initializeEmployee() {
@@ -29,13 +30,5 @@ public abstract class Employee {
 		setFacultyName(facultyName);
 		setDepartment(department);
 		setDesignation(designation);
-	}
-	
-	@Override
-	public String toString() {
-		
-		return "Employee ID = " + employeeID + "\n" + "FullName = " + fullName + "\n" + "Address = " + address + "\n"
-				+ "Faculty Name = " + facultyName + "\n" + "Department = " + department + "\n" + "Designation = "
-				+ designation;
 	}
 }

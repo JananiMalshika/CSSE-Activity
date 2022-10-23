@@ -28,9 +28,9 @@ import javax.xml.xpath.XPathExpression;
 
 public class XSLTransformUtil extends ReadProperty {
 
-	private static final ArrayList<Map<String, String>> l = new ArrayList<Map<String, String>>();
+	private static final ArrayList<Map<String, String>> arrayList = new ArrayList<Map<String, String>>();
 
-	private static Map<String, String> m = null;
+	private static Map<String, String> Employee = null;
 
 	public static void rEQUESTtRANSFORM() throws Exception {
 

@@ -22,18 +22,18 @@ import java.util.Map;
 
 public class DBConnectionUtil extends ReadProperty {
 
-	private final ArrayList<Employee> el = new ArrayList<Employee>();
+	private final ArrayList<Employee> emp = new ArrayList<Employee>();
 
-	private static Connection c;
+	private static Connection connect;
 
-	private static Statement s;
+	private static Statement statement;
 
-	private PreparedStatement ps;
+	private PreparedStatement preparedStatement;
 
 	public DBConnectionUtil() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			c = DriverManager.getConnection(p.getProperty("url"), p.getProperty("username"),
+			connect = DriverManager.getConnection(p.getProperty("url"), p.getProperty("username"),
 					p.getProperty("password"));
 		} catch (Exception e) {
 		} 
@@ -42,18 +42,18 @@ public class DBConnectionUtil extends ReadProperty {
 	public void a2() {
 
 		try {
-			int s = XSLTransformUtil.XMLXPATHS().size();
-			for (int i = 0; i < s; i++) {
-				Map<String, String> l = XSLTransformUtil.XMLXPATHS().get(i);
-				b EMPLOYEE = new b();
-				EMPLOYEE.eMPLOYEEiD(l.get("XpathEmployeeIDKey"));
-				EMPLOYEE.fULLnAME(l.get("XpathEmployeeNameKey"));
-				EMPLOYEE.aDDRESS(l.get("XpathEmployeeAddressKey"));
-				EMPLOYEE.fACULTYNAME(l.get("XpathFacultyNameKey"));
-				EMPLOYEE.dEPARTMENT(l.get("XpathDepartmentKey"));
-				EMPLOYEE.dESIGNATION(l.get("XpathDesignationKey"));
-				el.add(EMPLOYEE);
-				System.out.println(EMPLOYEE.toString() + "\n");
+			int Size = XSLTransformUtil.XMLXPATHS().size();
+			for (int i = 0; i < Size; i++) {
+				Map<String, String> employeeOutputMap = XSLTransformUtil.XMLXPATHS().get(i);
+				final ArrayList<Employee> employee = new ArrayList<Employee>();
+				employee.setEmployeeID(employeeOutputMap.get("XpathEmployeeIDKey"));
+				employee.setFullName(employeeOutputMap.get("XpathEmployeeNameKey"));
+				employee.setAddress(employeeOutputMap.get("XpathEmployeeAddressKey"));
+				employee.setFacultyName(employeeOutputMap.get("XpathFacultyNameKey"));
+				employee.setDepartment(employeeOutputMapget("XpathDepartmentKey"));
+				employee.setDesignation(employeeOutputMap.get("XpathDesignationKey"));
+				empl.add(Employee);
+				System.out.println(employee.toString() + "\n");
 			}
 		} catch (Exception e) {
 		}
@@ -61,40 +61,41 @@ public class DBConnectionUtil extends ReadProperty {
 
 	public void a3() {
 		try {
-			s = c.createStatement();
-			s.executeUpdate(RequestUtil.Q("q2"));
-			s.executeUpdate(RequestUtil.Q("q1"));
+			statement = connect.createStatement();
+			statement.executeUpdate(RequestUtil.Q("q2"));
+			statement.executeUpdate(RequestUtil.Q("q1"));
 		} catch (Exception e) {
 		}
 	}
 
 	public void a4() {
 		try {
-			ps = c.prepareStatement(RequestUtil.Q("q3"));
-			c.setAutoCommit(false);
+			preparedStatement = connect.prepareStatement(RequestUtil.Q("q3"));
+			connect.setAutoCommit(false);
 			for(int i = 0; i < el.size(); i++){
-				b e = el.get(i);
-				ps.setString(1, e.EMPLOYEEiDgET());
-				ps.setString(2, e.fULLnAMEgET());
-				ps.setString(3, e.aDDRESSgET());
-				ps.setString(4, e.fACULTYnAMEgET());
-				ps.setString(5, e.dEPARTMENTgET());
-				ps.setString(6, e.dESIGNATIONgET());
-				ps.addBatch();
+				Employee emp = el.get(i);
+				preparedStatement.setString(1, e.EMPLOYEEiDgET());
+				preparedStatement.setString(2, e.fULLnAMEgET());
+				preparedStatement.setString(3, e.aDDRESSgET());
+				preparedStatement.setString(4, e.fACULTYnAMEgET());
+				preparedStatement.setString(5, e.dEPARTMENTgET());
+				preparedStatement.setString(6, e.dESIGNATIONgET());
+				preparedStatement.addBatch();
 			}
-			ps.executeBatch();
-			c.commit();
+			preparedStatement.executeBatch();
+			connect.commit();
 		} catch (Exception e) {
 		}
 	}
 
-	public void eMPLOYEEGETBYID(String eid) {
+	public void getEmployeeByID(String eid) {
 
-		b e = new b();
+		Employee employee = new Employee();
+		
 		try {
-			ps = c.prepareStatement(RequestUtil.Q("q4"));
-			ps.setString(1, eid);
-			ResultSet R = ps.executeQuery();
+			preparedStatement = connect.prepareStatement(RequestUtil.Q("q4"));
+			preparedStatement.setString(1, eid);
+			ResultSet R = preparedStatement.executeQuery();
 			while (R.next()) {
 				e.eMPLOYEEiD(R.getString(1));
 				e.fULLnAME(R.getString(2));
@@ -103,9 +104,9 @@ public class DBConnectionUtil extends ReadProperty {
 				e.dEPARTMENT(R.getString(5));
 				e.dESIGNATION(R.getString(6));
 			}
-			ArrayList<b> l = new ArrayList<b>();
-			l.add(e);
-			eMPLOYEEoUTPUT(l);
+			ArrayList<Employee> employeeList = new ArrayList<Employee>();
+			employeeList.add(employee);
+			eMPLOYEEoUTPUT(employeeList);
 		} catch (Exception ex) {
 		}
 	}
@@ -113,9 +114,9 @@ public class DBConnectionUtil extends ReadProperty {
 	public void EMPLOYEEDELETE(String eid) {
 
 		try {
-			ps = c.prepareStatement(RequestUtil.Q("q6"));
-			ps.setString(1, eid);
-			ps.executeUpdate();
+			preparedStatement = connect.prepareStatement(RequestUtil.Q("q6"));
+			preparedStatement.setString(1, eid);
+			preparedStatement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -123,36 +124,36 @@ public class DBConnectionUtil extends ReadProperty {
 
 	public void a5() {
 
-		ArrayList<b> l = new ArrayList<b>();
+		ArrayList<Employee> listEmp = new ArrayList<Employee>();
 		try {
-			ps = c.prepareStatement(RequestUtil.Q("q5"));
-			ResultSet r = ps.executeQuery();
+			preparedStatement = connect.prepareStatement(RequestUtil.Q("q5"));
+			ResultSet r = preparedStatement.executeQuery();
 			while (r.next()) {
-				b e = new b();
-				e.eMPLOYEEiD(r.getString(1));
-				e.fULLnAME(r.getString(2));
-				e.aDDRESS(r.getString(3));
-				e.fACULTYNAME(r.getString(4));
-				e.dEPARTMENT(r.getString(5));
-				e.dESIGNATION(r.getString(6));
-				l.add(e);
+				Employee employee = new Employee();
+				employee.setEmployeeID(r.getString(1));
+				employee.setFullName(r.getString(2));
+				employee.setAddress(r.getString(3));
+				employee.setFacultyName(r.getString(4));
+				employee.setDepartment(r.getString(5));
+				employee.setDesignation(r.getString(6));
+				listEmp.add(employee);
 			}
 		} catch (Exception e) {
 		}
-		eMPLOYEEoUTPUT(l);
+		employeeInfo(listEmp);
 	}
 	
-	public void eMPLOYEEoUTPUT(ArrayList<b> l){
+	public void employeeInfo(ArrayList<Employee> listEmp){
 		
 		System.out.println("Employee ID" + "\t\t" + "Full Name" + "\t\t" + "Address" + "\t\t" + "Faculty Name" + "\t\t"
 				+ "Department" + "\t\t" + "Designation" + "\n");
 		System.out
 				.println("================================================================================================================");
-		for(int i = 0; i < l.size(); i++){
-			b e = l.get(i);
-			System.out.println(e.EMPLOYEEiDgET() + "\t" + e.fULLnAMEgET() + "\t\t"
-					+ e.aDDRESSgET() + "\t" + e.fACULTYnAMEgET() + "\t" + e.dEPARTMENTgET() + "\t"
-					+ e.dESIGNATIONgET() + "\n");
+		for(int i = 0; i < listEmp.size(); i++){
+			Employee e = listEmp.get(i);
+			System.out.println(e.getEmployeeID() + "\t" + e.getFullName() + "\t\t"
+					+ e.getAddress() + "\t" + e.getFacultyName() + "\t" + e.getDepartment() + "\t"
+					+ e.getDesignation() + "\n");
 			System.out
 			.println("----------------------------------------------------------------------------------------------------------------");
 		}
